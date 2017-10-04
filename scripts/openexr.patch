@@ -1,0 +1,131 @@
+diff -purN openexr-2.2.0.orig/IlmImf/CMakeLists.txt openexr-2.2.0/IlmImf/CMakeLists.txt
+--- openexr-2.2.0.orig/IlmImf/CMakeLists.txt	2014-08-10 00:23:56.000000000 -0400
++++ openexr-2.2.0/IlmImf/CMakeLists.txt	2014-10-21 08:47:43.270794226 -0400
+@@ -8,8 +8,8 @@ ADD_EXECUTABLE ( b44ExpLogTable
+ 
+ TARGET_LINK_LIBRARIES ( b44ExpLogTable
+   Half
+-  Iex${ILMBASE_LIBSUFFIX}
+   IlmThread${ILMBASE_LIBSUFFIX}
++  Iex${ILMBASE_LIBSUFFIX}
+   ${PTHREAD_LIB}
+ )
+ 
+@@ -25,8 +25,8 @@ ADD_EXECUTABLE ( dwaLookups
+ 
+ TARGET_LINK_LIBRARIES ( dwaLookups
+   Half
+-  Iex${ILMBASE_LIBSUFFIX}
+   IlmThread${ILMBASE_LIBSUFFIX}
++  Iex${ILMBASE_LIBSUFFIX}
+   ${PTHREAD_LIB}
+ )
+ 
+@@ -138,9 +138,9 @@ ADD_LIBRARY ( IlmImf ${LIB_TYPE}
+ 
+ TARGET_LINK_LIBRARIES ( IlmImf 
+   Half 
++  IlmThread${ILMBASE_LIBSUFFIX}
+   Iex${ILMBASE_LIBSUFFIX}
+   Imath${ILMBASE_LIBSUFFIX}
+-  IlmThread${ILMBASE_LIBSUFFIX}
+   ${PTHREAD_LIB} ${ZLIB_LIBRARIES}
+ )
+ 
+diff -purN openexr-2.2.0.orig/IlmImfExamples/CMakeLists.txt openexr-2.2.0/IlmImfExamples/CMakeLists.txt
+--- openexr-2.2.0.orig/IlmImfExamples/CMakeLists.txt	2014-08-10 00:23:57.000000000 -0400
++++ openexr-2.2.0/IlmImfExamples/CMakeLists.txt	2014-10-21 08:47:47.314794225 -0400
+@@ -15,9 +15,9 @@ ADD_EXECUTABLE ( IlmImfExamples
+ TARGET_LINK_LIBRARIES ( IlmImfExamples 
+         IlmImf
+         Half 
++        IlmThread${ILMBASE_LIBSUFFIX}
+         Iex${ILMBASE_LIBSUFFIX}
+         Imath${ILMBASE_LIBSUFFIX}
+-        IlmThread${ILMBASE_LIBSUFFIX}
+         ${PTHREAD_LIB} ${ZLIB_LIBRARIES}
+         )
+   
+diff -purN openexr-2.2.0.orig/IlmImfFuzzTest/CMakeLists.txt openexr-2.2.0/IlmImfFuzzTest/CMakeLists.txt
+--- openexr-2.2.0.orig/IlmImfFuzzTest/CMakeLists.txt	2014-08-10 00:23:58.000000000 -0400
++++ openexr-2.2.0/IlmImfFuzzTest/CMakeLists.txt	2014-10-21 08:47:50.682794225 -0400
+@@ -12,9 +12,9 @@ ADD_EXECUTABLE ( IlmImfFuzzTest
+ TARGET_LINK_LIBRARIES ( IlmImfFuzzTest 
+         IlmImf
+         Half
++        IlmThread${ILMBASE_LIBSUFFIX}
+         Iex${ILMBASE_LIBSUFFIX}
+         Imath${ILMBASE_LIBSUFFIX}
+-        IlmThread${ILMBASE_LIBSUFFIX}
+         ${PTHREAD_LIB} ${ZLIB_LIBRARIES})
+ 
+ ADD_TEST ( TestIlmImfFuzz IlmImfFuzzTest )
+diff -purN openexr-2.2.0.orig/IlmImfTest/CMakeLists.txt openexr-2.2.0/IlmImfTest/CMakeLists.txt
+--- openexr-2.2.0.orig/IlmImfTest/CMakeLists.txt	2014-08-10 00:23:58.000000000 -0400
++++ openexr-2.2.0/IlmImfTest/CMakeLists.txt	2014-10-21 08:47:55.230794224 -0400
+@@ -66,9 +66,9 @@ ADD_TEST ( TestIlmImf IlmImfTest )
+ TARGET_LINK_LIBRARIES ( IlmImfTest 
+         IlmImf  
+         Half 
++        IlmThread${ILMBASE_LIBSUFFIX}
+         Iex${ILMBASE_LIBSUFFIX}
+         Imath${ILMBASE_LIBSUFFIX}
+-        IlmThread${ILMBASE_LIBSUFFIX}
+         ${PTHREAD_LIB} ${ZLIB_LIBRARIES}
+         )
+ 
+diff -purN openexr-2.2.0.orig/IlmImfUtil/CMakeLists.txt openexr-2.2.0/IlmImfUtil/CMakeLists.txt
+--- openexr-2.2.0.orig/IlmImfUtil/CMakeLists.txt	2014-08-10 00:24:00.000000000 -0400
++++ openexr-2.2.0/IlmImfUtil/CMakeLists.txt	2014-10-21 08:47:58.266794224 -0400
+@@ -28,9 +28,9 @@ ADD_LIBRARY ( IlmImfUtil ${LIB_TYPE}
+ 
+ TARGET_LINK_LIBRARIES ( IlmImfUtil 
+   Half 
++  IlmThread${ILMBASE_LIBSUFFIX}
+   Iex${ILMBASE_LIBSUFFIX}
+   Imath${ILMBASE_LIBSUFFIX}
+-  IlmThread${ILMBASE_LIBSUFFIX}
+   IlmImf
+   ${PTHREAD_LIB} ${ZLIB_LIBRARIES}
+ )
+diff -purN openexr-2.2.0.orig/IlmImfUtilTest/CMakeLists.txt openexr-2.2.0/IlmImfUtilTest/CMakeLists.txt
+--- openexr-2.2.0.orig/IlmImfUtilTest/CMakeLists.txt	2014-08-10 00:24:00.000000000 -0400
++++ openexr-2.2.0/IlmImfUtilTest/CMakeLists.txt	2014-10-21 08:48:01.982794224 -0400
+@@ -17,9 +17,9 @@ TARGET_LINK_LIBRARIES ( IlmImfUtilTest 
+         IlmImfUtil
+         IlmImf  
+         Half 
++        IlmThread${ILMBASE_LIBSUFFIX}
+         Iex${ILMBASE_LIBSUFFIX}
+         Imath${ILMBASE_LIBSUFFIX}
+-        IlmThread${ILMBASE_LIBSUFFIX}
+         ${PTHREAD_LIB} ${ZLIB_LIBRARIES}
+         )
+ 
+diff -purN openexr-2.2.0.orig/exrheader/CMakeLists.txt openexr-2.2.0/exrheader/CMakeLists.txt
+--- openexr-2.2.0.orig/exrheader/CMakeLists.txt	2014-08-10 00:24:00.000000000 -0400
++++ openexr-2.2.0/exrheader/CMakeLists.txt	2014-10-21 08:48:08.734794223 -0400
+@@ -6,8 +6,8 @@ ADD_EXECUTABLE ( exrheader
+ 
+ TARGET_LINK_LIBRARIES ( exrheader
+   IlmImf
+-  Iex${ILMBASE_LIBSUFFIX}
+   IlmThread${ILMBASE_LIBSUFFIX}
++  Iex${ILMBASE_LIBSUFFIX}
+   Half
+   ${PTHREAD_LIB}
+   ${ZLIB_LIBRARIES}
+diff -purN openexr-2.2.0.orig/exrmultiview/CMakeLists.txt openexr-2.2.0/exrmultiview/CMakeLists.txt
+--- openexr-2.2.0.orig/exrmultiview/CMakeLists.txt	2014-08-10 00:24:01.000000000 -0400
++++ openexr-2.2.0/exrmultiview/CMakeLists.txt	2014-10-21 08:48:17.742794222 -0400
+@@ -9,9 +9,9 @@ ADD_EXECUTABLE ( exrmultiview
+ TARGET_LINK_LIBRARIES ( exrmultiview
+   IlmImf
+   Half
++  IlmThread${ILMBASE_LIBSUFFIX}
+   Imath${ILMBASE_LIBSUFFIX}
+   Iex${ILMBASE_LIBSUFFIX}
+-  IlmThread${ILMBASE_LIBSUFFIX}
+   ${PTHREAD_LIB}
+   ${ZLIB_LIBRARIES}
+ )

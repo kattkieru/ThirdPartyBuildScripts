@@ -1,0 +1,105 @@
+diff -purN elftoolchain-0.6.1.orig/Makefile elftoolchain-0.6.1/Makefile
+--- elftoolchain-0.6.1.orig/Makefile	2012-09-14 03:16:57.000000000 -0400
++++ elftoolchain-0.6.1/Makefile	2013-09-27 06:29:25.000000000 -0400
+@@ -4,37 +4,13 @@ TOP=	.
+ 
+ .include "${TOP}/mk/elftoolchain.os.mk"
+ 
+-# Build configuration information first.
+-SUBDIR += common
++SUBDIR += common libelf libdwarf
+ 
+-# Build the base libraries next.
+-SUBDIR += libelf
+-SUBDIR += libdwarf
+-
+-# Build additional APIs.
+-SUBDIR += libelftc
+-
+-# Build tools after the libraries.
+-SUBDIR += addr2line
+-SUBDIR += ar
+-SUBDIR += brandelf
+-SUBDIR += cxxfilt
+-SUBDIR += elfcopy
+-SUBDIR += elfdump
+-SUBDIR += findtextrel
+-SUBDIR += nm
+-SUBDIR += readelf
+-SUBDIR += size
+-SUBDIR += strings
+-
+-# Build the test suites.
+ .if exists(${.CURDIR}/test) && defined(MKTESTS) && ${MKTESTS} == "yes"
+-SUBDIR += test
+ .endif
+ 
+ # Build documentation at the end.
+ .if exists(${.CURDIR}/documentation) && defined(MKDOC) && ${MKDOC} == "yes"
+-SUBDIR += documentation
+ .endif
+ 
+ .include "${TOP}/mk/elftoolchain.subdir.mk"
+diff -purN elftoolchain-0.6.1.orig/common/_elftc.h elftoolchain-0.6.1/common/_elftc.h
+--- elftoolchain-0.6.1.orig/common/_elftc.h	2012-04-23 01:31:56.000000000 -0400
++++ elftoolchain-0.6.1/common/_elftc.h	2013-09-27 05:48:29.000000000 -0400
+@@ -208,6 +208,11 @@ struct name {							\
+ 
+ #ifndef	ELFTC_VCSID
+ 
++#if defined(__APPLE__)
++#define	ELFTC_VCSID(ID)
++#define roundup2 roundup
++#endif
++
+ #if defined(__DragonFly__)
+ #define	ELFTC_VCSID(ID)		__RCSID(ID)
+ #endif
+diff -purN elftoolchain-0.6.1.orig/libelf/Makefile elftoolchain-0.6.1/libelf/Makefile
+--- elftoolchain-0.6.1.orig/libelf/Makefile	2012-05-31 02:25:16.000000000 -0400
++++ elftoolchain-0.6.1/libelf/Makefile	2013-09-27 05:49:22.000000000 -0400
+@@ -65,7 +65,7 @@ CLEANFILES=	${GENSRCS}
+ 
+ SHLIB_MAJOR=	1
+ 
+-WARNS?=	6
++#WARNS?=	6
+ 
+ MAN=	elf.3							\
+ 	elf_begin.3						\
+diff -purN elftoolchain-0.6.1.orig/libelf/_libelf_config.h elftoolchain-0.6.1/libelf/_libelf_config.h
+--- elftoolchain-0.6.1.orig/libelf/_libelf_config.h	2011-12-04 01:45:47.000000000 -0500
++++ elftoolchain-0.6.1/libelf/_libelf_config.h	2013-09-27 05:44:41.000000000 -0400
+@@ -26,6 +26,20 @@
+  * $Id: _libelf_config.h 2287 2011-12-04 06:45:47Z jkoshy $
+  */
+ 
++#ifdef	__APPLE__
++
++#if	defined(__amd64__)
++#define	LIBELF_ARCH		EM_X86_64
++#define	LIBELF_BYTEORDER	ELFDATA2LSB
++#define	LIBELF_CLASS		ELFCLASS64
++#elif	defined(__i386__)
++#define	LIBELF_ARCH		EM_386
++#define	LIBELF_BYTEORDER	ELFDATA2LSB
++#define	LIBELF_CLASS		ELFCLASS32
++#endif
++
++#endif	/* __APPLE__ */
++
+ #ifdef	__DragonFly__
+ 
+ #if	defined(__amd64__)
+diff -purN elftoolchain-0.6.1.orig/mk/elftoolchain.inc.mk elftoolchain-0.6.1/mk/elftoolchain.inc.mk
+--- elftoolchain-0.6.1.orig/mk/elftoolchain.inc.mk	2011-12-04 01:40:45.000000000 -0500
++++ elftoolchain-0.6.1/mk/elftoolchain.inc.mk	2013-09-27 05:39:47.000000000 -0400
+@@ -12,7 +12,7 @@
+ .include <bsd.own.mk>
+ 
+ .if ${OS_HOST} == "DragonFly" || ${OS_HOST} == "FreeBSD" || \
+-	${OS_HOST} == "OpenBSD"
++	${OS_HOST} == "OpenBSD" || ${OS_HOST} == "Darwin"
+ # Simulate <bsd.inc.mk>.
+ .PHONY:		incinstall
+ includes:	${INCS}	incinstall

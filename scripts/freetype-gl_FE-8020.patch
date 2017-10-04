@@ -1,0 +1,12 @@
+diff -purN freetype-gl/texture-font.c freetype-gl2/texture-font.c
+--- freetype-gl/texture-font.c	Tue Mar 21 16:45:35 2017
++++ freetype-gl2/texture-font.c	Tue Mar 21 16:16:29 2017
+@@ -590,7 +590,7 @@ cleanup_stroker:
+         int top;
+         int right;
+         int bottom;
+-    } padding = { 0, 0, 1, 1 };
++    } padding = { 1, 1, 1, 1 };
+ 
+     if( self->rendermode == RENDER_SIGNED_DISTANCE_FIELD )
+     {

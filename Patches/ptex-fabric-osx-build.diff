@@ -1,0 +1,47 @@
+diff -rup ptex-fabric.old/src/ptex/Makefile ptex-fabric.new/src/ptex/Makefile
+--- ptex-fabric.old/src/ptex/Makefile	2012-07-13 03:57:08.000000000 -0400
++++ ptex-fabric.new/src/ptex/Makefile	2012-07-24 19:24:19.000000000 -0400
+@@ -19,8 +19,8 @@ ifdef PTEX_STATIC
+ DEFINES += -DPTEX_STATIC
+ endif
+ 
+-CXXFLAGS = -Wall -pedantic -W -std=c++98 $(DEBUG) $(INCPATH) $(DEFINES) -fPIC
+-LFLAGS   = 
++CXXFLAGS = -Wall -pedantic -W -std=c++98 $(DEBUG) $(INCPATH) $(DEFINES) -fPIC $(ARCHFLAGS)
++LFLAGS   = $(ARCHFLAGS)
+ LIBS     = -lm -lz -lpthread
+ 
+ SRCS = \
+@@ -75,7 +75,7 @@ clean:
+ 
+ ifdef PTEX_STATIC
+ libPtex.a : libPtex.a($(OBJECTS))
+-	ar -r $@
++	ranlib $@
+ 
+ else
+ libPtex.a : libPtex.a($(OBJECTS))
+diff -rup ptex-fabric.old/src/tests/Makefile ptex-fabric.new/src/tests/Makefile
+--- ptex-fabric.old/src/tests/Makefile	2012-07-13 03:57:08.000000000 -0400
++++ ptex-fabric.new/src/tests/Makefile	2012-07-24 19:24:33.000000000 -0400
+@@ -9,7 +9,7 @@ endif
+ # DEBUG = -g -DDEBUG
+ DEBUG    = -O2 -DNDEBUG
+ INCPATH  = -I../ptex
+-CXXFLAGS = -Wall -W -pedantic -std=c++98 $(DEBUG) $(INCPATH) -fPIC
++CXXFLAGS = -Wall -W -pedantic -std=c++98 $(DEBUG) $(INCPATH) -fPIC $(ARCHFLAGS)
+ PTEX     = ../ptex/libPtex.a
+ LIBS     = -lm -lz -lpthread 
+ 
+diff -rup ptex-fabric.old/src/utils/Makefile ptex-fabric.new/src/utils/Makefile
+--- ptex-fabric.old/src/utils/Makefile	2012-07-13 03:57:08.000000000 -0400
++++ ptex-fabric.new/src/utils/Makefile	2012-07-24 19:24:26.000000000 -0400
+@@ -9,7 +9,7 @@ endif
+ # DEBUG = -g -DDEBUG
+ DEBUG    = -O2 -DNDEBUG
+ INCPATH  = -I../ptex
+-CXXFLAGS = -Wall -W -pedantic -std=c++98 $(DEBUG) $(INCPATH) -fPIC
++CXXFLAGS = -Wall -W -pedantic -std=c++98 $(DEBUG) $(INCPATH) -fPIC $(ARCHFLAGS)
+ PTEX     = ../ptex/libPtex.a
+ LIBS     = -lm -lz -lpthread
+ 

@@ -1,0 +1,12 @@
+diff -purN tiff-3.9.7.orig/nmake.opt tiff-3.9.7/nmake.opt
+--- tiff-3.9.7.orig/nmake.opt	Wed Jun  7 18:33:45 2006
++++ tiff-3.9.7/nmake.opt	Wed Oct 15 15:13:33 2014
+@@ -114,7 +114,7 @@ CHECK_JPEG_YCBCR_SUBSAMPLING = 1
+ # with no debugging information.
+ # NOTE: /EHsc option required if you want to build the C++ stream API
+ #
+-OPTFLAGS =	/Ox /MD /EHsc /W3 /D_CRT_SECURE_NO_DEPRECATE
++OPTFLAGS =	/Ox /MT /EHsc /W3 /D_CRT_SECURE_NO_DEPRECATE
+ #OPTFLAGS = 	/Zi 
+ 
+ #

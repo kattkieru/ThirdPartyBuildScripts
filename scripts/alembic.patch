@@ -1,0 +1,68 @@
+diff -purN alembic-1.5.3_2013121700.orig/CMakeLists.txt alembic-1.5.3_2013121700/CMakeLists.txt
+--- alembic-1.5.3_2013121700.orig/CMakeLists.txt	Tue Dec 17 19:29:16 2013
++++ alembic-1.5.3_2013121700/CMakeLists.txt	Wed Oct 15 11:06:44 2014
+@@ -99,7 +99,7 @@ ELSE()
+ ENDIF()
+ 
+ IF( ${WINDOWS} )
+-  ADD_DEFINITIONS ( -DOPENEXR_DLL -DHALF_EXPORTS )
++  #ADD_DEFINITIONS ( -DOPENEXR_DLL -DHALF_EXPORTS )
+   ADD_DEFINITIONS( -DPLATFORM_WINDOWS -DPLATFORM=WINDOWS )
+ ELSEIF( ${DARWIN} )
+   #ADD_DEFINITIONS( -DPLATFORM_DARWIN -DPLATFORM=DARWIN "-arch x86_64" )
+diff -purN alembic-1.5.3_2013121700.orig/build/AlembicArnold.cmake alembic-1.5.3_2013121700/build/AlembicArnold.cmake
+--- alembic-1.5.3_2013121700.orig/build/AlembicArnold.cmake	Tue Dec 17 19:29:16 2013
++++ alembic-1.5.3_2013121700/build/AlembicArnold.cmake	Wed Oct 15 11:06:44 2014
+@@ -96,7 +96,7 @@ FIND_LIBRARY( ALEMBIC_ARNOLD_LIBARNOLD a
+ 
+ IF( ${WINDOWS} )
+   SET( ARNOLD_COMPILE_FLAGS "/c /nologo /MT /TP /DWIN32" )
+-  SET( ARNOLD_LINK_FLAGS "/nologo /dll /LIBPATH:\"%RMANTREE%\lib\" libai.lib" )
++  SET( ARNOLD_LINK_FLAGS "/nologo /dll /LIBPATH:\"%RMANTREE%\\lib\" libai.lib" )
+ ELSEIF( ${DARWIN} )
+   SET( ARNOLD_COMPILE_FLAGS "-c" )
+   SET( ARNOLD_LINK_FLAGS "-bundle -undefined dynamic_lookup" )
+diff -purN alembic-1.5.3_2013121700.orig/lib/Alembic/Abc/ArchiveInfo.cpp alembic-1.5.3_2013121700/lib/Alembic/Abc/ArchiveInfo.cpp
+--- alembic-1.5.3_2013121700.orig/lib/Alembic/Abc/ArchiveInfo.cpp	Tue Dec 17 19:29:16 2013
++++ alembic-1.5.3_2013121700/lib/Alembic/Abc/ArchiveInfo.cpp	Wed Oct 15 11:09:44 2014
+@@ -35,6 +35,7 @@
+ //-*****************************************************************************
+ 
+ #include <Alembic/Abc/ArchiveInfo.h>
++#include <algorithm>
+ 
+ namespace Alembic {
+ namespace Abc {
+diff -purN alembic-1.5.3_2013121700.orig/lib/Alembic/AbcGeom/IFaceSet.cpp alembic-1.5.3_2013121700/lib/Alembic/AbcGeom/IFaceSet.cpp
+--- alembic-1.5.3_2013121700.orig/lib/Alembic/AbcGeom/IFaceSet.cpp	Tue Dec 17 19:29:16 2013
++++ alembic-1.5.3_2013121700/lib/Alembic/AbcGeom/IFaceSet.cpp	Wed Oct 15 11:11:57 2014
+@@ -35,6 +35,7 @@
+ //-*****************************************************************************
+ 
+ #include <Alembic/AbcGeom/IFaceSet.h>
++#include <algorithm>
+ 
+ namespace Alembic {
+ namespace AbcGeom {
+diff -purN alembic-1.5.3_2013121700.orig/lib/Alembic/AbcGeom/IPoints.h alembic-1.5.3_2013121700/lib/Alembic/AbcGeom/IPoints.h
+--- alembic-1.5.3_2013121700.orig/lib/Alembic/AbcGeom/IPoints.h	Tue Dec 17 19:29:16 2013
++++ alembic-1.5.3_2013121700/lib/Alembic/AbcGeom/IPoints.h	Wed Oct 15 11:12:11 2014
+@@ -41,6 +41,7 @@
+ #include <Alembic/AbcGeom/SchemaInfoDeclarations.h>
+ #include <Alembic/AbcGeom/IGeomParam.h>
+ #include <Alembic/AbcGeom/IGeomBase.h>
++#include <algorithm>
+ 
+ namespace Alembic {
+ namespace AbcGeom {
+diff -purN alembic-1.5.3_2013121700.orig/lib/Alembic/AbcGeom/ISubD.cpp alembic-1.5.3_2013121700/lib/Alembic/AbcGeom/ISubD.cpp
+--- alembic-1.5.3_2013121700.orig/lib/Alembic/AbcGeom/ISubD.cpp	Tue Dec 17 19:29:16 2013
++++ alembic-1.5.3_2013121700/lib/Alembic/AbcGeom/ISubD.cpp	Wed Oct 15 11:12:25 2014
+@@ -35,6 +35,7 @@
+ //-*****************************************************************************
+ 
+ #include <Alembic/AbcGeom/ISubD.h>
++#include <algorithm>
+ 
+ namespace Alembic {
+ namespace AbcGeom {

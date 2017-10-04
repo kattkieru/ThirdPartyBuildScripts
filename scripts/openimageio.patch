@@ -1,0 +1,26 @@
+diff --git a/src/include/export.h b/src/include/export.h
+index 99e6e68..a7ff722 100644
+--- a/src/include/export.h
++++ b/src/include/export.h
+@@ -71,7 +71,7 @@
+ /// 
+ 
+ #if defined(_MSC_VER) || defined(__CYGWIN__)
+-  #define OIIO_IMPORT __declspec(dllimport)
++  #define OIIO_IMPORT
+   #define OIIO_EXPORT __declspec(dllexport)
+   #define OIIO_LOCAL
+ #else
+diff --git a/src/ptex.imageio/ptex/PtexWriter.cpp b/src/ptex.imageio/ptex/PtexWriter.cpp
+index 33def8c..a52502b 100644
+--- a/src/ptex.imageio/ptex/PtexWriter.cpp
++++ b/src/ptex.imageio/ptex/PtexWriter.cpp
+@@ -66,7 +66,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+ #include <algorithm>
+ #include <iostream>
+ #include <sstream>
+-#if defined (__FreeBSD__)
++#if defined (__FreeBSD__) || defined (__APPLE__)
+ #include <unistd.h>
+ #endif
+ 

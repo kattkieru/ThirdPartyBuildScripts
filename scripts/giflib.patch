@@ -1,0 +1,228 @@
+diff -purN giflib-5.0.6.orig/giflib.sln giflib-5.0.6/giflib.sln
+--- giflib-5.0.6.orig/giflib.sln	Thu Jan  1 01:00:00 1970
++++ giflib-5.0.6/giflib.sln	Tue Apr 15 13:52:00 2014
+@@ -0,0 +1,26 @@
++﻿
++Microsoft Visual Studio Solution File, Format Version 11.00
++# Visual Studio 2010
++Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "giflib", "giflib.vcxproj", "{3E8C8DC6-BB28-4B46-46A6-E2EBFF462969}"
++EndProject
++Global
++	GlobalSection(SolutionConfigurationPlatforms) = preSolution
++		Debug|Win32 = Debug|Win32
++		Debug|x64 = Debug|x64
++		Release|Win32 = Release|Win32
++		Release|x64 = Release|x64
++	EndGlobalSection
++	GlobalSection(ProjectConfigurationPlatforms) = postSolution
++		{3E8C8DC6-BB28-4B46-46A6-E2EBFF462969}.Debug|Win32.ActiveCfg = Debug|Win32
++		{3E8C8DC6-BB28-4B46-46A6-E2EBFF462969}.Debug|Win32.Build.0 = Debug|Win32
++		{3E8C8DC6-BB28-4B46-46A6-E2EBFF462969}.Debug|x64.ActiveCfg = Debug|x64
++		{3E8C8DC6-BB28-4B46-46A6-E2EBFF462969}.Debug|x64.Build.0 = Debug|x64
++		{3E8C8DC6-BB28-4B46-46A6-E2EBFF462969}.Release|Win32.ActiveCfg = Release|Win32
++		{3E8C8DC6-BB28-4B46-46A6-E2EBFF462969}.Release|Win32.Build.0 = Release|Win32
++		{3E8C8DC6-BB28-4B46-46A6-E2EBFF462969}.Release|x64.ActiveCfg = Release|x64
++		{3E8C8DC6-BB28-4B46-46A6-E2EBFF462969}.Release|x64.Build.0 = Release|x64
++	EndGlobalSection
++	GlobalSection(SolutionProperties) = preSolution
++		HideSolutionNode = FALSE
++	EndGlobalSection
++EndGlobal
+diff -purN giflib-5.0.6.orig/giflib.vcxproj giflib-5.0.6/giflib.vcxproj
+--- giflib-5.0.6.orig/giflib.vcxproj	Thu Jan  1 01:00:00 1970
++++ giflib-5.0.6/giflib.vcxproj	Tue Apr 15 14:05:23 2014
+@@ -0,0 +1,100 @@
++﻿<?xml version="1.0" encoding="utf-8"?>
++<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
++  <ItemGroup Label="ProjectConfigurations">
++    <ProjectConfiguration Include="Debug|Win32">
++      <Configuration>Debug</Configuration>
++      <Platform>Win32</Platform>
++    </ProjectConfiguration>
++    <ProjectConfiguration Include="Debug|x64">
++      <Configuration>Debug</Configuration>
++      <Platform>x64</Platform>
++    </ProjectConfiguration>
++    <ProjectConfiguration Include="Release|Win32">
++      <Configuration>Release</Configuration>
++      <Platform>Win32</Platform>
++    </ProjectConfiguration>
++    <ProjectConfiguration Include="Release|x64">
++      <Configuration>Release</Configuration>
++      <Platform>x64</Platform>
++    </ProjectConfiguration>
++  </ItemGroup>
++  <PropertyGroup Label="Globals">
++    <Keyword>Win32Proj</Keyword>
++  </PropertyGroup>
++  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
++  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
++    <ConfigurationType>StaticLibrary</ConfigurationType>
++    <UseDebugLibraries>true</UseDebugLibraries>
++  </PropertyGroup>
++  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
++    <ConfigurationType>StaticLibrary</ConfigurationType>
++    <UseDebugLibraries>true</UseDebugLibraries>
++  </PropertyGroup>
++  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
++    <ConfigurationType>Application</ConfigurationType>
++    <UseDebugLibraries>false</UseDebugLibraries>
++  </PropertyGroup>
++  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
++    <ConfigurationType>StaticLibrary</ConfigurationType>
++    <UseDebugLibraries>false</UseDebugLibraries>
++  </PropertyGroup>
++  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
++  <ImportGroup Label="ExtensionSettings">
++  </ImportGroup>
++  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
++    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
++  </ImportGroup>
++  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
++    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
++  </ImportGroup>
++  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
++    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
++  </ImportGroup>
++  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
++    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
++  </ImportGroup>
++  <PropertyGroup Label="UserMacros" />
++  <PropertyGroup />
++  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
++    <ClCompile>
++      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
++      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
++      <WarningLevel>Level3</WarningLevel>
++      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
++      <Optimization>Disabled</Optimization>
++    </ClCompile>
++  </ItemDefinitionGroup>
++  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
++    <ClCompile>
++      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
++      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
++      <WarningLevel>Level3</WarningLevel>
++      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
++      <Optimization>Disabled</Optimization>
++    </ClCompile>
++  </ItemDefinitionGroup>
++  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
++    <ClCompile>
++      <AdditionalIncludeDirectories>..;.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
++      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
++    </ClCompile>
++  </ItemDefinitionGroup>
++  <ItemGroup>
++    <ClCompile Include="lib\dgif_lib.c" />
++    <ClCompile Include="lib\egif_lib.c" />
++    <ClCompile Include="lib\gifalloc.c" />
++    <ClCompile Include="lib\gif_err.c" />
++    <ClCompile Include="lib\gif_font.c" />
++    <ClCompile Include="lib\gif_hash.c" />
++    <ClCompile Include="lib\quantize.c" />
++  </ItemGroup>
++  <ItemGroup>
++    <ClInclude Include="lib\gif_hash.h" />
++    <ClInclude Include="lib\gif_lib.h" />
++    <ClInclude Include="lib\gif_lib_private.h" />
++    <ClInclude Include="stdbool.h" />
++  </ItemGroup>
++  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
++  <ImportGroup Label="ExtensionTargets">
++  </ImportGroup>
++</Project>
+\ No newline at end of file
+diff -purN giflib-5.0.6.orig/giflib.vcxproj.user giflib-5.0.6/giflib.vcxproj.user
+--- giflib-5.0.6.orig/giflib.vcxproj.user	Thu Jan  1 01:00:00 1970
++++ giflib-5.0.6/giflib.vcxproj.user	Tue Apr 15 13:51:24 2014
+@@ -0,0 +1,3 @@
++﻿<?xml version="1.0" encoding="utf-8"?>
++<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
++</Project>
+\ No newline at end of file
+diff -purN giflib-5.0.6.orig/lib/dgif_lib.c giflib-5.0.6/lib/dgif_lib.c
+--- giflib-5.0.6.orig/lib/dgif_lib.c	Sat Mar 29 10:30:10 2014
++++ giflib-5.0.6/lib/dgif_lib.c	Tue Apr 15 14:00:36 2014
+@@ -12,7 +12,7 @@ two modules will be linked.  Preserve th
+ #include <limits.h>
+ #include <stdint.h>
+ #include <fcntl.h>
+-#include <unistd.h>
++//#include <unistd.h>
+ #include <stdio.h>
+ #include <string.h>
+ 
+diff -purN giflib-5.0.6.orig/lib/egif_lib.c giflib-5.0.6/lib/egif_lib.c
+--- giflib-5.0.6.orig/lib/egif_lib.c	Sat Mar 29 10:30:53 2014
++++ giflib-5.0.6/lib/egif_lib.c	Tue Apr 15 14:00:29 2014
+@@ -8,7 +8,7 @@ two modules will be linked.  Preserve th
+ 
+ *****************************************************************************/
+ 
+-#include <unistd.h>
++//#include <unistd.h>
+ #include <stdint.h>
+ #include <stdlib.h>
+ #include <stdio.h>
+diff -purN giflib-5.0.6.orig/lib/gif_hash.c giflib-5.0.6/lib/gif_hash.c
+--- giflib-5.0.6.orig/lib/gif_hash.c	Tue Sep  3 17:40:00 2013
++++ giflib-5.0.6/lib/gif_hash.c	Tue Apr 15 14:00:47 2014
+@@ -11,7 +11,7 @@ This module is used to hash the GIF code
+ 
+ *****************************************************************************/
+ 
+-#include <unistd.h>
++//#include <unistd.h>
+ #include <stdint.h>
+ #include <stdlib.h>
+ #include <fcntl.h>
+diff -purN giflib-5.0.6.orig/lib/gif_hash.h giflib-5.0.6/lib/gif_hash.h
+--- giflib-5.0.6.orig/lib/gif_hash.h	Tue Sep  3 17:40:00 2013
++++ giflib-5.0.6/lib/gif_hash.h	Tue Apr 15 14:03:16 2014
+@@ -7,7 +7,7 @@ gif_hash.h - magfic constants and declar
+ #ifndef _GIF_HASH_H_
+ #define _GIF_HASH_H_
+ 
+-#include <unistd.h>
++//#include <unistd.h>
+ #include <stdint.h>
+ 
+ #define HT_SIZE			8192	   /* 12bits = 4096 or twice as big! */
+diff -purN giflib-5.0.6.orig/stdbool.h giflib-5.0.6/stdbool.h
+--- giflib-5.0.6.orig/stdbool.h	Thu Jan  1 01:00:00 1970
++++ giflib-5.0.6/stdbool.h	Tue Apr 15 13:55:18 2014
+@@ -0,0 +1,32 @@
++#ifndef STDBOOL_H_
++#define STDBOOL_H_
++
++/**
++ * stdbool.h
++ * Author    - Yaping Xin
++ * E-mail    - xinyp at live dot com
++ * Date      - February 10, 2014
++ * Copyright - You are free to use for any purpose except illegal acts
++ * Warrenty  - None: don't blame me if it breaks something
++ *
++ * In ISO C99, stdbool.h is a standard header and _Bool is a keyword, but
++ * some compilers don't offer these yet. This header file is an 
++ * implementation of the stdbool.h header file.
++ *
++ */
++
++#ifndef _Bool
++typedef unsigned char _Bool;
++#endif /* _Bool */
++
++/**
++ * Define the Boolean macros only if they are not already defined.
++ */
++#ifndef __bool_true_false_are_defined
++#define bool _Bool
++#define false 0 
++#define true 1
++#define __bool_true_false_are_defined 1
++#endif /* __bool_true_false_are_defined */
++
++#endif /* STDBOOL_H_ */
+\ No newline at end of file

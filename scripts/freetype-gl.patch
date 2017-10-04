@@ -1,0 +1,14 @@
+diff -purN freetype-gl/opengl.h freetype-gl2/opengl.h
+--- freetype-gl/opengl.h	Tue Sep 27 16:00:13 2016
++++ freetype-gl2/opengl.h	Tue Sep 27 15:56:46 2016
+@@ -33,7 +33,9 @@
+  */
+ #ifndef __OPEN_GL_H__
+ #define __OPEN_GL_H__
+-
++ 
++#define GLEW_STATIC
++ 
+ #if defined(__APPLE__)
+ #   include "TargetConditionals.h"
+ #   if TARGET_OS_SIMULATOR || TARGET_OS_IPHONE
